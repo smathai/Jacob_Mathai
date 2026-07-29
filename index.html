@@ -131,7 +131,7 @@
 
   /* ── Obituary ── */
   .section {
-    max-width: 720px;
+    max-width: 1100px;
     margin: 0 auto 52px;
     padding: 0 24px;
   }
@@ -149,15 +149,18 @@
     background: var(--white);
     border: 1px solid var(--border);
     border-radius: 4px;
-    padding: 32px 36px;
+    padding: 36px 44px;
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.4rem;
     line-height: 1.85;
     color: var(--ink);
     min-height: 160px;
     box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    columns: 2;
+    column-gap: 48px;
+    column-rule: 1px solid var(--border);
   }
-  .obituary-box p { margin-bottom: 1.2em; }
+  .obituary-box p { margin-bottom: 1.2em; break-inside: avoid; }
   .obituary-box p:last-child { margin-bottom: 0; }
   .obituary-placeholder {
     font-style: italic;
