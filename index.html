@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jacob Mathai — In Loving Memory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f7f3ec;
+    --parchment: #ede6d6;
+    --gold: #c8a96e;
+    --gold-dark: #9a7a42;
+    --ink: #2a1f14;
+    --muted: #7a6a55;
+    --border: #d8cbb8;
+    --white: #fdfaf5;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background-color: var(--cream);
+    background-image:
+      radial-gradient(ellipse at 20% 0%, rgba(200,169,110,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(200,169,110,0.10) 0%, transparent 60%);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── Page header ── */
+  .page-header {
+    text-align: center;
+    padding: 52px 24px 24px;
+  }
+  .in-loving-memory {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    letter-spacing: 0.18em;
+    color: var(--gold-dark);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  /* ── Slideshow ── */
+  .slideshow-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 0 24px 36px;
+  }
+  .frame {
+    position: relative;
+    width: min(520px, 100%);
+    aspect-ratio: 4/3;
+    border: 3px solid var(--gold);
+    box-shadow:
+      0 0 0 8px var(--parchment),
+      0 0 0 10px var(--gold),
+      0 8px 40px rgba(0,0,0,0.25);
+    background: #000;
+    overflow: hidden;
+  }
+  .frame img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+  }
+  .frame img.active { opacity: 1; }
+
+  /* Slideshow dots */
+  .slide-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .dot.active { background: var(--gold); }
+
+  /* ── Name & dates ── */
+  .name-section {
+    text-align: center;
+    padding: 8px 24px 32px;
+  }
+  .full-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .dates {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    font-weight: 400;
+    color: var(--gold-dark);
+    letter-spacing: 0.12em;
+  }
+  .dates .dash {
+    display: inline-block;
+    margin: 0 14px;
+    color: var(--border);
+  }
+
+  /* ── Divider ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    max-width: 640px;
+    margin: 0 auto 40px;
+    padding: 0 24px;
+  }
+  .divider-line { flex: 1; height: 1px; background: var(--border); }
+  .divider-ornament { color: var(--gold); font-size: 1.1rem; flex-shrink: 0; }
+
+  /* ── Obituary ── */
+  .section {
+    max-width: 720px;
+    margin: 0 auto 52px;
+    padding: 0 24px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .obituary-box {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 32px 36px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    line-height: 1.85;
+    color: var(--ink);
+    min-height: 160px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  }
+  .obituary-placeholder {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1rem;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  /* ── Celebration of Life ── */
+  .celebration-card {
+    background: var(--white);
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    padding: 40px 36px;
+    text-align: center;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    position: relative;
+    overflow: hidden;
+  }
+  .celebration-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+  .celebration-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+  .celebration-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  .celebration-detail {
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .celebration-detail .label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .celebration-detail .value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .celebration-detail .value.highlight {
+    color: var(--gold-dark);
+    font-size: clamp(1.3rem, 3.5vw, 1.7rem);
+  }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 32px 24px 48px;
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  footer .ornament { color: var(--gold); margin: 0 8px; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="in-loving-memory">In Loving Memory</div>
+</div>
+
+<!-- Slideshow -->
+<div class="slideshow-wrap">
+  <div>
+    <div class="frame" id="frame">
+      <!-- Images injected by JS -->
+    </div>
+    <div class="slide-dots" id="dots"></div>
+  </div>
+</div>
+
+<!-- Name & Dates -->
+<div class="name-section">
+  <div class="full-name">Jacob Mathai</div>
+  <div class="dates">
+    <span>May 15, 1937</span>
+    <span class="dash">—</span>
+    <span>June 25, 2026</span>
+  </div>
+</div>
+
+<div class="divider">
+  <div class="divider-line"></div>
+  <div class="divider-ornament">✦</div>
+  <div class="divider-line"></div>
+</div>
+
+<!-- Obituary -->
+<div class="section">
+  <div class="section-title">Obituary</div>
+  <div class="obituary-box">
+    <div class="obituary-placeholder">Obituary text will be added here.</div>
+  </div>
+</div>
+
+<div class="divider">
+  <div class="divider-line"></div>
+  <div class="divider-ornament">✦</div>
+  <div class="divider-line"></div>
+</div>
+
+<!-- Celebration of Life -->
+<div class="section">
+  <div class="celebration-card">
+    <div class="celebration-title">Celebration of Life</div>
+
+    <div class="celebration-detail">
+      <span class="label">Date</span>
+      <span class="value highlight">August 29, 2026</span>
+    </div>
+
+    <div class="celebration-detail" style="margin-top: 20px;">
+      <span class="label">Location</span>
+      <span class="value">The North Carolina Arboretum</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span class="ornament">✦</span>
+  Jacob Mathai &nbsp;·&nbsp; 1937 – 2026
+  <span class="ornament">✦</span>
+</footer>
+
+<script>
+const images = [
+  "images/100_1692.JPG",
+  "images/100_3480.JPG",
+  "images/100_3846.jpg",
+  "images/100_5069.jpg",
+  "images/100_5212.jpg",
+  "images/100_6102.jpg",
+  "images/100_6114-EDIT.jpg",
+  "images/100_6412.jpg",
+  "images/100_6488-EDIT.jpg",
+  "images/100_6702-EDIT.jpg",
+  "images/100_6904-EDIT.jpg",
+  "images/100_6963.jpg",
+  "images/100_6990-EDIT.jpg",
+  "images/100_7631-EDIT.jpg",
+  "images/DSC01248-EDIT.jpg",
+  "images/DSC01346.JPG",
+  "images/anne on jacob's lap.jpg",
+];
+
+const frame = document.getElementById("frame");
+const dotsEl = document.getElementById("dots");
+let current = 0;
+let imgEls = [];
+
+// Pre-load all images into the frame
+images.forEach((src, i) => {
+  const img = document.createElement("img");
+  img.src = src;
+  img.alt = "Jacob Mathai";
+  if (i === 0) img.classList.add("active");
+  frame.appendChild(img);
+  imgEls.push(img);
+
+  // Dot
+  const dot = document.createElement("div");
+  dot.className = "dot" + (i === 0 ? " active" : "");
+  dot.addEventListener("click", () => goTo(i));
+  dotsEl.appendChild(dot);
+});
+
+function goTo(idx) {
+  imgEls[current].classList.remove("active");
+  dotsEl.children[current].classList.remove("active");
+  current = idx;
+  imgEls[current].classList.add("active");
+  dotsEl.children[current].classList.add("active");
+}
+
+// Auto-advance every 4 seconds
+setInterval(() => goTo((current + 1) % images.length), 4000);
+</script>
+</body>
+</html>
