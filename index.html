@@ -90,6 +90,26 @@
   }
   .dot.active { background: var(--gold); }
 
+  .slide-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-top: 14px;
+  }
+  .slide-btn {
+    width: 38px; height: 38px;
+    border: 1.5px solid var(--border);
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--gold-dark);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .slide-btn:hover { background: var(--parchment); border-color: var(--gold); }
+
   /* ── Name & dates ── */
   .name-section {
     text-align: center;
@@ -270,6 +290,11 @@
       <!-- Images injected by JS -->
     </div>
     <div class="slide-dots" id="dots"></div>
+    <div class="slide-controls">
+      <button class="slide-btn" id="btn-prev" title="Previous">&#8592;</button>
+      <button class="slide-btn" id="btn-play" title="Pause">&#9646;&#9646;</button>
+      <button class="slide-btn" id="btn-next" title="Next">&#8594;</button>
+    </div>
   </div>
 </div>
 
@@ -396,8 +421,37 @@ function goTo(idx) {
   dotsEl.children[current].classList.add("active");
 }
 
-// Auto-advance every 4 seconds
-setInterval(() => goTo((current + 1) % images.length), 4000);
+// Auto-advance
+let playing = true;
+let timer = setInterval(advance, 4000);
+
+function advance() { goTo((current + 1) % images.length); }
+
+function pause() {
+  clearInterval(timer);
+  playing = false;
+  document.getElementById('btn-play').innerHTML = '&#9654;';
+  document.getElementById('btn-play').title = 'Play';
+}
+
+function play() {
+  timer = setInterval(advance, 4000);
+  playing = true;
+  document.getElementById('btn-play').innerHTML = '&#9646;&#9646;';
+  document.getElementById('btn-play').title = 'Pause';
+}
+
+document.getElementById('btn-prev').addEventListener('click', () => {
+  pause();
+  goTo((current - 1 + images.length) % images.length);
+});
+document.getElementById('btn-next').addEventListener('click', () => {
+  pause();
+  goTo((current + 1) % images.length);
+});
+document.getElementById('btn-play').addEventListener('click', () => {
+  playing ? pause() : play();
+});
 </script>
 </body>
 </html>
