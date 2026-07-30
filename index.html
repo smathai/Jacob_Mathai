@@ -165,23 +165,55 @@
     text-align: center;
     margin-bottom: 24px;
   }
-  .obituary-box {
+  .obituary-outer {
+    position: relative;
     background: var(--white);
     border: 1px solid var(--border);
     border-radius: 4px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+  .obituary-box {
     padding: 36px 44px;
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.4rem;
     line-height: 1.85;
     color: var(--ink);
-    min-height: 160px;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-    columns: 2;
-    column-gap: 48px;
-    column-rule: 1px solid var(--border);
+    max-height: 320px;
+    overflow: hidden;
+    transition: max-height 0.7s ease;
   }
-  .obituary-box p { margin-bottom: 1.2em; break-inside: avoid; }
+  .obituary-box.expanded { max-height: 2000px; }
+  .obituary-box p { margin-bottom: 1.2em; }
   .obituary-box p:last-child { margin-bottom: 0; }
+
+  .obituary-fade {
+    position: absolute;
+    bottom: 48px; left: 0; right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, var(--white));
+    pointer-events: none;
+    transition: opacity 0.4s;
+  }
+  .obituary-fade.hidden { opacity: 0; }
+
+  .see-more-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: none;
+    border: none;
+    border-top: 1px solid var(--border);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--gold-dark);
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: background 0.2s, color 0.2s;
+  }
+  .see-more-btn:hover { background: var(--parchment); }
+  .see-more-btn.hidden { display: none; }
   .obituary-placeholder {
     font-style: italic;
     color: var(--muted);
@@ -264,8 +296,6 @@
     .dates { font-size: 1.2rem; }
     .section { padding: 0 16px; }
     .obituary-box {
-      columns: 1;
-      column-rule: none;
       padding: 24px 20px;
       font-size: 1.2rem;
     }
@@ -317,13 +347,17 @@
 <!-- Obituary -->
 <div class="section">
   <div class="section-title">Obituary</div>
-  <div class="obituary-box">
+  <div class="obituary-outer">
+  <div class="obituary-box" id="obituary-box">
     <p>Jacob Mathai ("Koch" or "Appa"), born on May 10, 1937, passed away peacefully on June 25, 2026, leaving behind a family whose lives were immeasurably enriched by his love, guidance, and unwavering presence.</p>
     <p>Jacob was the beloved husband of Anne, with whom he shared a marriage that began in April 1976. Together they built a family centered on love, curiosity, and shared experiences. He was a devoted father to Sidhartha, Adithya, and Melissa, and the eldest of five brothers: John, Mathai ("Koch-Koch" or "KK"), Joseph ("Minoo"), and Cherian ("Anyan").</p>
     <p>If there was one defining characteristic of Jacob's life, it was his devotion to family. From his earliest years until his very last, he believed that relationships were life's greatest treasure. He had a remarkable gift for staying connected with every branch of the family, no matter the distance. More than simply keeping in touch, he became the family's organizer, encourager, and driving force—finding every reason to gather loved ones together, celebrate milestones, and create opportunities for memories that would last a lifetime.</p>
     <p>Jacob also possessed an extraordinary curiosity about the world. A passionate traveler throughout his life, his journeys began with international business in India, China, and France and continued into retirement as he made homes in Indonesia, France, and the United States. He fulfilled a lifelong dream of visiting every continent, including Antarctica. His greatest joy, however, was sharing that passion with his children, intentionally choosing new destinations each time so they could experience the richness and diversity of the world alongside him.</p>
     <p>His adventurous spirit extended far beyond travel. Jacob believed that the best way to understand a culture was through its people, traditions, and food. He delighted in trying local specialties—from telling stories of eating snake in China to savoring the finest French cuisine as a proud member of the Chaîne des Rôtisseurs. His willingness to embrace new experiences never faded with age. He learned to scuba dive in his sixties, taught himself to play tennis, skied in the Alps, rode horses in Kashmir, and continually sought opportunities to challenge himself and experience life to its fullest.</p>
     <p>Those who knew Jacob will remember not only where he traveled, but how fully he embraced every place, every experience, and every relationship. His enduring legacy is one of curiosity, generosity, connection, and a steadfast belief that life's greatest joys are found in sharing experiences with the people you love.</p>
+  </div>
+  <div class="obituary-fade" id="obituary-fade"></div>
+  <button class="see-more-btn" id="see-more-btn">Read more ↓</button>
   </div>
 </div>
 
@@ -363,6 +397,12 @@
 </footer>
 
 <script>
+document.getElementById('see-more-btn').addEventListener('click', () => {
+  document.getElementById('obituary-box').classList.add('expanded');
+  document.getElementById('obituary-fade').classList.add('hidden');
+  document.getElementById('see-more-btn').classList.add('hidden');
+});
+
 const images = [
   "images/100_1692.JPG",
   "images/100_3480.JPG",
