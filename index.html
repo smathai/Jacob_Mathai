@@ -236,6 +236,25 @@
     letter-spacing: 0.05em;
   }
   footer .ornament { color: var(--gold); margin: 0 8px; }
+
+  @media (max-width: 768px) {
+    .frame { width: calc(100vw - 32px); }
+    .slideshow-wrap { padding: 8px 16px 28px; }
+    .full-name { font-size: 2.2rem; }
+    .dates { font-size: 1.2rem; }
+    .section { padding: 0 16px; }
+    .obituary-box {
+      columns: 1;
+      column-rule: none;
+      padding: 24px 20px;
+      font-size: 1.2rem;
+    }
+    .celebration-card { padding: 28px 20px; }
+    .celebration-title { font-size: 1.6rem; }
+    .celebration-detail .value { font-size: 1.2rem; }
+    .celebration-detail .value.highlight { font-size: 1.3rem; }
+    .divider { padding: 0 16px; }
+  }
 </style>
 </head>
 <body>
