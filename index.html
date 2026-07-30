@@ -398,7 +398,9 @@
 
 <script>
 document.getElementById('see-more-btn').addEventListener('click', () => {
-  document.getElementById('obituary-box').classList.add('expanded');
+  const box = document.getElementById('obituary-box');
+  box.style.maxHeight = box.scrollHeight + 'px';
+  box.classList.add('expanded');
   document.getElementById('obituary-fade').classList.add('hidden');
   document.getElementById('see-more-btn').classList.add('hidden');
 });
