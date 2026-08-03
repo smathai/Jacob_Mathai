@@ -280,6 +280,96 @@
     font-size: clamp(1.55rem, 3.5vw, 1.95rem);
   }
 
+  /* ── RSVP ── */
+  .rsvp-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    padding: 36px 44px;
+    margin-top: 28px;
+  }
+  .rsvp-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.85rem, 4vw, 2.45rem);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .rsvp-subtitle {
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+  .rsvp-field { margin-bottom: 20px; }
+  .rsvp-field label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--muted);
+    margin-bottom: 7px;
+  }
+  .rsvp-field .required { color: var(--gold-dark); }
+  .rsvp-field input {
+    width: 100%;
+    padding: 10px 13px;
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    transition: border-color 0.2s;
+  }
+  .rsvp-field input:focus { outline: none; border-color: var(--gold); }
+
+  .rsvp-radio-group { display: flex; flex-direction: column; gap: 8px; }
+  .rsvp-radio-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .rsvp-radio-option input { width: auto; cursor: pointer; }
+
+  .rsvp-field-row { display: flex; gap: 16px; }
+  .rsvp-field-row .rsvp-field { flex: 1; margin-bottom: 0; }
+
+  .rsvp-submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--gold-dark);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Jost', sans-serif;
+    letter-spacing: 0.04em;
+    transition: background 0.2s;
+    margin-top: 8px;
+  }
+  .rsvp-submit-btn:hover { background: var(--gold); }
+  .rsvp-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .rsvp-status {
+    display: none;
+    margin-top: 20px;
+    padding: 14px 16px;
+    border-radius: 4px;
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: center;
+  }
+  .rsvp-status.success { background: #edf7ed; border: 1.5px solid #a8d5a8; color: #2d6a2d; }
+  .rsvp-status.error { background: #fdf0ed; border: 1.5px solid #d5a8a8; color: #6a2d2d; }
+
   /* ── Footer ── */
   footer {
     text-align: center;
@@ -305,6 +395,9 @@
     .celebration-detail .value { font-size: 1.2rem; }
     .celebration-detail .value.highlight { font-size: 1.3rem; }
     .divider { padding: 0 16px; }
+    .rsvp-card { padding: 24px 20px; }
+    .rsvp-field-row { flex-direction: column; gap: 0; }
+    .rsvp-field-row .rsvp-field { margin-bottom: 20px; }
   }
 </style>
 </head>
@@ -388,6 +481,58 @@
       <span class="value">The North Carolina Botanical Garden</span><br>
       <a href="https://maps.app.goo.gl/4qcfFm8b8C31uS4VA" target="_blank" style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--gold-dark); text-decoration:none; border-bottom:1px solid var(--gold);">100 Old Mason Farm Rd, Chapel Hill, NC 27517</a>
     </div>
+  </div>
+
+  <div class="rsvp-card">
+    <div class="rsvp-title">RSVP</div>
+    <p class="rsvp-subtitle">Please let us know if you'll be able to join us.</p>
+
+    <form id="rsvp-form">
+      <div class="rsvp-field">
+        <label>Name <span class="required">*</span></label>
+        <input type="text" id="rsvp_name" required>
+      </div>
+
+      <div class="rsvp-field">
+        <label>Email Address <span class="required">*</span></label>
+        <input type="email" id="rsvp_email" required>
+      </div>
+
+      <div class="rsvp-field">
+        <label>Phone Number</label>
+        <input type="tel" id="rsvp_phone">
+      </div>
+
+      <div class="rsvp-field">
+        <label>Will you be attending? <span class="required">*</span></label>
+        <div class="rsvp-radio-group" id="attendance-group">
+          <label class="rsvp-radio-option"><input type="radio" name="attendance" value="Will Attend In Person" required> Will Attend In Person</label>
+          <label class="rsvp-radio-option"><input type="radio" name="attendance" value="Will Attend Virtually"> Will Attend Virtually</label>
+          <label class="rsvp-radio-option"><input type="radio" name="attendance" value="Will Not Attend"> Will Not Attend</label>
+        </div>
+      </div>
+
+      <div class="rsvp-field" id="party-field" style="display:none;">
+        <label>Number in Party (Including Yourself)</label>
+        <input type="number" id="rsvp_party" min="1" value="1">
+      </div>
+
+      <div class="rsvp-field-row" id="dates-field" style="display:none;">
+        <div class="rsvp-field">
+          <label>Tentative Arrival Date</label>
+          <input type="date" id="rsvp_arrival">
+        </div>
+        <div class="rsvp-field">
+          <label>Tentative Departure Date</label>
+          <input type="date" id="rsvp_departure">
+        </div>
+      </div>
+
+      <button type="submit" class="rsvp-submit-btn" id="rsvp-submit-btn">Send RSVP →</button>
+    </form>
+
+    <div class="rsvp-status success" id="rsvp-success">✓ Thank you! Your RSVP has been received.</div>
+    <div class="rsvp-status error" id="rsvp-error">Something went wrong — please try again, or email us directly.</div>
   </div>
 </div>
 
@@ -494,6 +639,63 @@ document.getElementById('btn-next').addEventListener('click', () => {
 });
 document.getElementById('btn-play').addEventListener('click', () => {
   playing ? pause() : play();
+});
+</script>
+
+<!-- EmailJS SDK (RSVP) -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+// ── EmailJS configuration ─────────────────────────────────────────────────
+// Same EmailJS account/service as the family tree's submit.html.
+// Template variables used: {{name}} {{email}} {{phone}} {{attendance}}
+//   {{party_size}} {{arrival_date}} {{departure_date}}
+const EMAILJS_PUBLIC_KEY      = "V5lxNtDStE9pfh7_h";
+const EMAILJS_SERVICE_ID      = "service_chemerapallil";
+const EMAILJS_RSVP_TEMPLATE_ID = "RSVP_life";
+// ─────────────────────────────────────────────────────────────────────────
+
+emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+// Show travel details only when attending in person
+const attendanceRadios = document.querySelectorAll('input[name="attendance"]');
+const partyField = document.getElementById('party-field');
+const datesField = document.getElementById('dates-field');
+
+function updateTravelFieldsVisibility() {
+  const selected = document.querySelector('input[name="attendance"]:checked');
+  const show = !!selected && selected.value === 'Will Attend In Person';
+  partyField.style.display = show ? 'block' : 'none';
+  datesField.style.display = show ? 'flex' : 'none';
+}
+attendanceRadios.forEach(r => r.addEventListener('change', updateTravelFieldsVisibility));
+
+document.getElementById('rsvp-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = document.getElementById('rsvp-submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  const attendance = document.querySelector('input[name="attendance"]:checked');
+  const params = {
+    name: document.getElementById('rsvp_name').value,
+    email: document.getElementById('rsvp_email').value,
+    phone: document.getElementById('rsvp_phone').value || 'Not provided',
+    attendance: attendance ? attendance.value : 'Not specified',
+    party_size: document.getElementById('rsvp_party').value || 'Not specified',
+    arrival_date: document.getElementById('rsvp_arrival').value || 'Not specified',
+    departure_date: document.getElementById('rsvp_departure').value || 'Not specified',
+  };
+
+  try {
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_RSVP_TEMPLATE_ID, params);
+    document.getElementById('rsvp-form').style.display = 'none';
+    document.getElementById('rsvp-success').style.display = 'block';
+  } catch (err) {
+    console.error('EmailJS error:', err);
+    document.getElementById('rsvp-error').style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Send RSVP →';
+  }
 });
 </script>
 </body>
