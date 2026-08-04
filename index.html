@@ -586,12 +586,18 @@ const dotsEl = document.getElementById("dots");
 let current = 0;
 let imgEls = [];
 
-// Pre-load all images into the frame
+// Build the frame/dots right away, but only fetch the first photo now —
+// the rest are queued via data-src and loaded after the page finishes
+// loading, so visitors aren't waiting on 26 photos just to see the page.
 images.forEach((src, i) => {
   const img = document.createElement("img");
-  img.src = src;
   img.alt = "Jacob Mathai";
-  if (i === 0) img.classList.add("active");
+  if (i === 0) {
+    img.classList.add("active");
+    img.src = src;
+  } else {
+    img.dataset.src = src;
+  }
   frame.appendChild(img);
   imgEls.push(img);
 
@@ -602,10 +608,31 @@ images.forEach((src, i) => {
   dotsEl.appendChild(dot);
 });
 
+function ensureLoaded(idx) {
+  const img = imgEls[idx];
+  if (img.dataset.src) {
+    img.src = img.dataset.src;
+    delete img.dataset.src;
+  }
+}
+
+// Load the remaining photos one at a time in the background so they
+// don't compete for bandwidth with each other (or with the current slide).
+function loadRemainingImages(idx) {
+  if (idx >= imgEls.length) return;
+  const img = imgEls[idx];
+  if (!img.dataset.src) { loadRemainingImages(idx + 1); return; }
+  img.addEventListener("load", () => loadRemainingImages(idx + 1), { once: true });
+  img.addEventListener("error", () => loadRemainingImages(idx + 1), { once: true });
+  ensureLoaded(idx);
+}
+window.addEventListener("load", () => loadRemainingImages(1));
+
 function goTo(idx) {
   imgEls[current].classList.remove("active");
   dotsEl.children[current].classList.remove("active");
   current = idx;
+  ensureLoaded(current);
   imgEls[current].classList.add("active");
   dotsEl.children[current].classList.add("active");
 }
