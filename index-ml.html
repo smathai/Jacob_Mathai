@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ml">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jacob Mathai — In Loving Memory</title>
+<title>ജേക്കബ് മത്തായി — അനുസ്മരണം</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Noto+Serif+Malayalam:wght@300;400;600&family=Noto+Sans+Malayalam:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --cream: #f7f3ec;
@@ -21,7 +21,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'Jost', sans-serif;
+    font-family: 'Jost', 'Noto Sans Malayalam', sans-serif;
     background-color: var(--cream);
     background-image:
       radial-gradient(ellipse at 20% 0%, rgba(200,169,110,0.12) 0%, transparent 60%),
@@ -48,12 +48,11 @@
     padding: 52px 24px 24px;
   }
   .in-loving-memory {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Cormorant Garamond', 'Noto Serif Malayalam', serif;
     font-style: italic;
     font-size: 1.35rem;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.06em;
     color: var(--gold-dark);
-    text-transform: uppercase;
     margin-bottom: 8px;
   }
 
@@ -129,20 +128,20 @@
     padding: 8px 24px 32px;
   }
   .full-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.65rem, 6vw, 4.05rem);
-    font-weight: 300;
-    letter-spacing: 0.06em;
+    font-family: 'Cormorant Garamond', 'Noto Serif Malayalam', serif;
+    font-size: clamp(2.35rem, 6vw, 3.6rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
     color: var(--ink);
-    line-height: 1.1;
+    line-height: 1.2;
     margin-bottom: 16px;
   }
   .dates {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.45rem, 3vw, 1.85rem);
+    font-family: 'Cormorant Garamond', 'Noto Serif Malayalam', serif;
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
     font-weight: 400;
     color: var(--gold-dark);
-    letter-spacing: 0.12em;
+    letter-spacing: 0.04em;
   }
   .dates .dash {
     display: inline-block;
@@ -169,11 +168,10 @@
     padding: 0 24px;
   }
   .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.25rem;
+    font-family: 'Cormorant Garamond', 'Noto Serif Malayalam', serif;
+    font-size: 1.2rem;
     font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+    letter-spacing: 0.08em;
     color: var(--gold-dark);
     text-align: center;
     margin-bottom: 24px;
@@ -188,15 +186,15 @@
   }
   .obituary-box {
     padding: 36px 44px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    line-height: 1.85;
+    font-family: 'Cormorant Garamond', 'Noto Serif Malayalam', serif;
+    font-size: 1.25rem;
+    line-height: 2;
     color: var(--ink);
     max-height: 320px;
     overflow: hidden;
     transition: max-height 0.7s ease;
   }
-  .obituary-box.expanded { max-height: 2000px; }
+  .obituary-box.expanded { max-height: 3200px; }
   .obituary-box p { margin-bottom: 1.2em; }
   .obituary-box p:last-child { margin-bottom: 0; }
 
@@ -217,12 +215,12 @@
     background: none;
     border: none;
     border-top: 1px solid var(--border);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
+    font-family: 'Cormorant Garamond', 'Noto Serif Malayalam', serif;
+    font-size: 1.05rem;
     font-style: italic;
     color: var(--gold-dark);
     cursor: pointer;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.02em;
     transition: background 0.2s, color 0.2s;
   }
   .see-more-btn:hover { background: var(--parchment); }
@@ -261,35 +259,34 @@
     background: linear-gradient(to right, transparent, var(--gold), transparent);
   }
   .celebration-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.85rem, 4vw, 2.45rem);
-    font-weight: 300;
-    letter-spacing: 0.08em;
+    font-family: 'Cormorant Garamond', 'Noto Serif Malayalam', serif;
+    font-size: clamp(1.6rem, 4vw, 2.15rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
     color: var(--ink);
     margin-bottom: 28px;
   }
   .celebration-detail {
     margin-bottom: 14px;
-    line-height: 1.5;
+    line-height: 1.6;
   }
   .celebration-detail .label {
-    font-size: 0.97rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    letter-spacing: 0.08em;
     color: var(--muted);
     display: block;
     margin-bottom: 4px;
   }
   .celebration-detail .value {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.45rem, 3vw, 1.75rem);
+    font-family: 'Cormorant Garamond', 'Noto Serif Malayalam', serif;
+    font-size: clamp(1.3rem, 3vw, 1.6rem);
     color: var(--ink);
     font-weight: 400;
   }
   .celebration-detail .value.highlight {
     color: var(--gold-dark);
-    font-size: clamp(1.55rem, 3.5vw, 1.95rem);
+    font-size: clamp(1.4rem, 3.5vw, 1.75rem);
   }
 
   /* ── RSVP ── */
@@ -302,17 +299,17 @@
     margin-top: 28px;
   }
   .rsvp-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.85rem, 4vw, 2.45rem);
-    font-weight: 300;
-    letter-spacing: 0.08em;
+    font-family: 'Cormorant Garamond', 'Noto Serif Malayalam', serif;
+    font-size: clamp(1.6rem, 4vw, 2.15rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
     color: var(--ink);
     text-align: center;
     margin-bottom: 8px;
   }
   .rsvp-subtitle {
     text-align: center;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--muted);
     margin-bottom: 28px;
   }
@@ -331,7 +328,7 @@
     border: 1.5px solid var(--border);
     border-radius: 4px;
     font-size: 14px;
-    font-family: 'Jost', sans-serif;
+    font-family: 'Jost', 'Noto Sans Malayalam', sans-serif;
     background: var(--cream);
     color: var(--ink);
     transition: border-color 0.2s;
@@ -362,8 +359,8 @@
     cursor: pointer;
     font-size: 14px;
     font-weight: 600;
-    font-family: 'Jost', sans-serif;
-    letter-spacing: 0.04em;
+    font-family: 'Jost', 'Noto Sans Malayalam', sans-serif;
+    letter-spacing: 0.02em;
     transition: background 0.2s;
     margin-top: 8px;
   }
@@ -386,26 +383,26 @@
   footer {
     text-align: center;
     padding: 32px 24px 48px;
-    font-size: 1.05rem;
+    font-size: 1rem;
     color: var(--muted);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.02em;
   }
   footer .ornament { color: var(--gold); margin: 0 8px; }
 
   @media (max-width: 768px) {
     .frame { width: calc(100vw - 32px); }
     .slideshow-wrap { padding: 8px 16px 28px; }
-    .full-name { font-size: 2.2rem; }
-    .dates { font-size: 1.2rem; }
+    .full-name { font-size: 2rem; }
+    .dates { font-size: 1.1rem; }
     .section { padding: 0 16px; }
     .obituary-box {
       padding: 24px 20px;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
     .celebration-card { padding: 28px 20px; }
-    .celebration-title { font-size: 1.6rem; }
-    .celebration-detail .value { font-size: 1.2rem; }
-    .celebration-detail .value.highlight { font-size: 1.3rem; }
+    .celebration-title { font-size: 1.45rem; }
+    .celebration-detail .value { font-size: 1.1rem; }
+    .celebration-detail .value.highlight { font-size: 1.2rem; }
     .divider { padding: 0 16px; }
     .rsvp-card { padding: 24px 20px; }
     .rsvp-field-row { flex-direction: column; gap: 0; }
@@ -416,11 +413,11 @@
 <body>
 
 <div class="lang-switch">
-  <span class="lang-current">English</span> · <a href="index-fr.html">Français</a> · <a href="index-ml.html">മലയാളം</a>
+  <a href="index.html">English</a> · <a href="index-fr.html">Français</a> · <span class="lang-current">മലയാളം</span>
 </div>
 
 <div class="page-header">
-  <div class="in-loving-memory">In Loving Memory</div>
+  <div class="in-loving-memory">സ്നേഹപൂർവ്വം അനുസ്മരിക്കുന്നു</div>
 </div>
 
 <!-- Slideshow -->
@@ -431,20 +428,20 @@
     </div>
     <div class="slide-dots" id="dots"></div>
     <div class="slide-controls">
-      <button class="slide-btn" id="btn-prev" title="Previous">&#8592;</button>
-      <button class="slide-btn" id="btn-play" title="Pause">&#9646;&#9646;</button>
-      <button class="slide-btn" id="btn-next" title="Next">&#8594;</button>
+      <button class="slide-btn" id="btn-prev" title="മുമ്പത്തേത്">&#8592;</button>
+      <button class="slide-btn" id="btn-play" title="പോസ്">&#9646;&#9646;</button>
+      <button class="slide-btn" id="btn-next" title="അടുത്തത്">&#8594;</button>
     </div>
   </div>
 </div>
 
 <!-- Name & Dates -->
 <div class="name-section">
-  <div class="full-name">Jacob Mathai</div>
+  <div class="full-name">ജേക്കബ് മത്തായി</div>
   <div class="dates">
-    <span>May 10, 1937</span>
+    <span>1937 മേയ് 10</span>
     <span class="dash">—</span>
-    <span>June 25, 2026</span>
+    <span>2026 ജൂൺ 25</span>
   </div>
 </div>
 
@@ -456,18 +453,18 @@
 
 <!-- Obituary -->
 <div class="section">
-  <div class="section-title">Obituary</div>
+  <div class="section-title">അനുസ്മരണം</div>
   <div class="obituary-outer">
   <div class="obituary-box" id="obituary-box">
-    <p>Jacob Mathai ("Koch" or "Appa"), born on May 10, 1937, passed away peacefully on June 25, 2026, leaving behind a family whose lives were immeasurably enriched by his love, guidance, and unwavering presence.</p>
-    <p>Jacob was the beloved husband of Anne, with whom he shared a marriage that began in April 1976. Together they built a family centered on love, curiosity, and shared experiences. He was a devoted father to Sidhartha, Adithya, and Melissa, and the eldest of five brothers: John, Mathai ("Koch-Koch" or "KK"), Joseph ("Minoo"), and Cherian ("Anyan").</p>
-    <p>If there was one defining characteristic of Jacob's life, it was his devotion to family. From his earliest years until his very last, he believed that relationships were life's greatest treasure. He had a remarkable gift for staying connected with every branch of the family, no matter the distance. More than simply keeping in touch, he became the family's organizer, encourager, and driving force—finding every reason to gather loved ones together, celebrate milestones, and create opportunities for memories that would last a lifetime.</p>
-    <p>Jacob also possessed an extraordinary curiosity about the world. A passionate traveler throughout his life, his journeys began with international business in India, China, and France and continued into retirement as he made homes in Indonesia, France, and the United States. He fulfilled a lifelong dream of visiting every continent, including Antarctica. His greatest joy, however, was sharing that passion with his children, intentionally choosing new destinations each time so they could experience the richness and diversity of the world alongside him.</p>
-    <p>His adventurous spirit extended far beyond travel. Jacob believed that the best way to understand a culture was through its people, traditions, and food. He delighted in trying local specialties—from telling stories of eating snake in China to savoring the finest French cuisine as a proud member of the Chaîne des Rôtisseurs. His willingness to embrace new experiences never faded with age. He learned to scuba dive in his sixties, taught himself to play tennis, skied in the Alps, rode horses in Kashmir, and continually sought opportunities to challenge himself and experience life to its fullest.</p>
-    <p>Those who knew Jacob will remember not only where he traveled, but how fully he embraced every place, every experience, and every relationship. His enduring legacy is one of curiosity, generosity, connection, and a steadfast belief that life's greatest joys are found in sharing experiences with the people you love.</p>
+    <p>1937 മേയ് 10-ന് ജനിച്ച ജേക്കബ് മത്തായി ("കൊച്ച്" അല്ലെങ്കിൽ "അപ്പ"), 2026 ജൂൺ 25-ന് സമാധാനത്തോടെ ഈ ലോകത്തോട് വിടപറഞ്ഞു. അദ്ദേഹത്തിന്റെ സ്നേഹവും മാർഗനിർദേശവും അചഞ്ചലമായ സാന്നിധ്യവും കൊണ്ട് സമ്പന്നമായ ജീവിതം നയിക്കാൻ അദ്ദേഹം തന്റെ കുടുംബത്തെ അനുഗ്രഹിച്ചു.</p>
+    <p>1976 ഏപ്രിലിൽ ആരംഭിച്ച വിവാഹബന്ധത്തിലൂടെ ജേക്കബ് ആൻ-ന്റെ പ്രിയപ്പെട്ട ഭർത്താവായി. സ്നേഹത്തിലും കൗതുകത്തിലും പങ്കുവെക്കപ്പെട്ട അനുഭവങ്ങളിലും അധിഷ്ഠിതമായ ഒരു കുടുംബം അവർ ഒരുമിച്ച് കെട്ടിപ്പടുത്തു. സിദ്ധാർത്ഥ, ആദിത്യ, മെലിസ്സ എന്നിവരുടെ സ്നേഹനിധിയായ പിതാവായിരുന്നു അദ്ദേഹം, കൂടാതെ അഞ്ച് സഹോദരന്മാരിൽ മൂത്തയാളും: ജോൺ, മത്തായി ("കൊച്ചുകൊച്ച്" അല്ലെങ്കിൽ "കെ.കെ."), ജോസഫ് ("മിനു"), ചെറിയാൻ ("അണ്ണൻ").</p>
+    <p>ജേക്കബിന്റെ ജീവിതത്തിന്റെ ഏറ്റവും വലിയ പ്രത്യേകത ഒന്നു മാത്രമായിരുന്നെങ്കിൽ, അത് കുടുംബത്തോടുള്ള അദ്ദേഹത്തിന്റെ അർപ്പണബോധമായിരുന്നു. തന്റെ ബാല്യം മുതൽ അവസാന നാളുകൾ വരെ, ബന്ധങ്ങളാണ് ജീവിതത്തിലെ ഏറ്റവും വലിയ നിധി എന്ന് അദ്ദേഹം വിശ്വസിച്ചു. എത്ര ദൂരം അകലെയാണെങ്കിലും കുടുംബത്തിലെ എല്ലാ ശാഖകളുമായും ബന്ധം നിലനിർത്താൻ അദ്ദേഹത്തിന് അസാധാരണമായ കഴിവുണ്ടായിരുന്നു. കേവലം ബന്ധം നിലനിർത്തുന്നതിനപ്പുറം, കുടുംബത്തെ ഒരുമിച്ചു കൂട്ടാനും സന്തോഷനിമിഷങ്ങൾ ആഘോഷിക്കാനും ജീവിതകാലം മുഴുവൻ നിലനിൽക്കുന്ന ഓർമ്മകൾ സൃഷ്ടിക്കാനുമുള്ള ഓരോ അവസരവും കണ്ടെത്തിക്കൊണ്ട് അദ്ദേഹം കുടുംബത്തിന്റെ സംഘാടകനും പ്രോത്സാഹകനും പ്രേരകശക്തിയുമായി മാറി.</p>
+    <p>ലോകത്തെക്കുറിച്ച് അസാധാരണമായ ജിജ്ഞാസയും ജേക്കബിനുണ്ടായിരുന്നു. ജീവിതകാലം മുഴുവൻ തീവ്രമായ യാത്രാഭിനിവേശമുള്ള അദ്ദേഹം, ഇന്ത്യ, ചൈന, ഫ്രാൻസ് എന്നിവിടങ്ങളിലെ അന്താരാഷ്ട്ര ബിസിനസ്സിലൂടെ യാത്രകൾ ആരംഭിച്ചു, വിരമിച്ച ശേഷം ഇന്തോനേഷ്യ, ഫ്രാൻസ്, അമേരിക്ക എന്നിവിടങ്ങളിൽ വീടുകൾ ഉണ്ടാക്കിക്കൊണ്ട് അത് തുടർന്നു. അന്റാർട്ടിക്ക ഉൾപ്പെടെ എല്ലാ ഭൂഖണ്ഡങ്ങളും സന്ദർശിക്കണമെന്ന തന്റെ ജീവിതാഭിലാഷം അദ്ദേഹം സഫലമാക്കി. എന്നാൽ, തന്റെ മക്കൾക്കൊപ്പം ഈ അഭിനിവേശം പങ്കുവെക്കുന്നതായിരുന്നു അദ്ദേഹത്തിന്റെ ഏറ്റവും വലിയ സന്തോഷം, ഓരോ തവണയും പുതിയ ലക്ഷ്യസ്ഥാനങ്ങൾ മനഃപൂർവ്വം തിരഞ്ഞെടുത്ത് അവർക്ക് തന്നോടൊപ്പം ലോകത്തിന്റെ സമ്പന്നതയും വൈവിധ്യവും അനുഭവിക്കാൻ അവസരം നൽകി.</p>
+    <p>അദ്ദേഹത്തിന്റെ സാഹസികമനോഭാവം യാത്രകൾക്കപ്പുറത്തേക്കും വ്യാപിച്ചിരുന്നു. ഒരു സംസ്കാരത്തെ മനസ്സിലാക്കാനുള്ള ഏറ്റവും നല്ല വഴി അതിലെ ജനങ്ങളിലൂടെയും പാരമ്പര്യങ്ങളിലൂടെയും ഭക്ഷണത്തിലൂടെയുമാണെന്ന് ജേക്കബ് വിശ്വസിച്ചു. നാടൻ വിഭവങ്ങൾ രുചിക്കുന്നതിൽ അദ്ദേഹം ആനന്ദം കണ്ടെത്തി—ചൈനയിൽ പാമ്പിനെ കഴിച്ച കഥകൾ പറയുന്നത് മുതൽ, ഷെയ്ൻ ഡെ റോട്ടിസ്യൂർ (Chaîne des Rôtisseurs) എന്ന പ്രശസ്ത ഫ്രഞ്ച് പാചക സംഘടനയിലെ അഭിമാനിയായ അംഗമെന്ന നിലയിൽ മികച്ച ഫ്രഞ്ച് വിഭവങ്ങൾ ആസ്വദിക്കുന്നത് വരെ. പ്രായമായിട്ടും പുതിയ അനുഭവങ്ങൾ സ്വീകരിക്കാനുള്ള അദ്ദേഹത്തിന്റെ സന്നദ്ധത ഒരിക്കലും കുറഞ്ഞില്ല. അറുപതുകളിൽ അദ്ദേഹം സ്കൂബ ഡൈവിംഗ് പഠിച്ചു, സ്വയം ടെന്നീസ് കളിക്കാൻ പഠിച്ചു, ആൽപ്സിൽ സ്കീയിംഗ് നടത്തി, കാശ്മീരിൽ കുതിരസവാരി ചെയ്തു, തന്നെത്തന്നെ വെല്ലുവിളിക്കാനും ജീവിതം പൂർണ്ണമായി ആസ്വദിക്കാനുമുള്ള അവസരങ്ങൾ തുടർച്ചയായി തേടിക്കൊണ്ടിരുന്നു.</p>
+    <p>ജേക്കബിനെ അറിയാവുന്നവർ അദ്ദേഹം എവിടെയൊക്കെ യാത്ര ചെയ്തു എന്നത് മാത്രമല്ല, ഓരോ സ്ഥലത്തെയും ഓരോ അനുഭവത്തെയും ഓരോ ബന്ധത്തെയും അദ്ദേഹം എത്ര പൂർണ്ണമായി ഉൾക്കൊണ്ടു എന്നും ഓർമ്മിക്കും. ജിജ്ഞാസ, ഔദാര്യം, ബന്ധം, കൂടാതെ പ്രിയപ്പെട്ടവരുമായി അനുഭവങ്ങൾ പങ്കുവെക്കുന്നതിലാണ് ജീവിതത്തിലെ ഏറ്റവും വലിയ സന്തോഷങ്ങൾ കണ്ടെത്തുന്നത് എന്ന അചഞ്ചലമായ വിശ്വാസവുമാണ് അദ്ദേഹത്തിന്റെ ശാശ്വതമായ പൈതൃകം.</p>
   </div>
   <div class="obituary-fade" id="obituary-fade"></div>
-  <button class="see-more-btn" id="see-more-btn">Read more ↓</button>
+  <button class="see-more-btn" id="see-more-btn">കൂടുതൽ വായിക്കുക ↓</button>
   </div>
 </div>
 
@@ -480,82 +477,82 @@
 <!-- Celebration of Life -->
 <div class="section">
   <div class="celebration-card">
-    <div class="celebration-title">Celebration of Life Event</div>
+    <div class="celebration-title">ജീവിതാഘോഷ ചടങ്ങ്</div>
 
     <div class="celebration-detail">
-      <span class="label">Date</span>
-      <span class="value highlight">August 29, 2026</span>
+      <span class="label">തീയതി</span>
+      <span class="value highlight">2026 ഓഗസ്റ്റ് 29</span>
     </div>
 
     <div class="celebration-detail">
-      <span class="label">Time</span>
-      <span class="value">1:00 pm – 4:00 pm</span>
+      <span class="label">സമയം</span>
+      <span class="value">ഉച്ചയ്ക്ക് 1:00 മുതൽ 4:00 വരെ</span>
     </div>
 
     <div class="celebration-detail" style="margin-top: 20px;">
-      <span class="label">Location</span>
+      <span class="label">സ്ഥലം</span>
       <span class="value">The North Carolina Botanical Garden</span><br>
-      <a href="https://maps.app.goo.gl/4qcfFm8b8C31uS4VA" target="_blank" style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--gold-dark); text-decoration:none; border-bottom:1px solid var(--gold);">100 Old Mason Farm Rd, Chapel Hill, NC 27517</a>
-      <div style="font-style: italic; color: var(--muted); font-size: 0.9rem; margin-top: 10px;">Zoom link will be added here closer to the event date</div>
+      <a href="https://maps.app.goo.gl/4qcfFm8b8C31uS4VA" target="_blank" style="font-family:'Cormorant Garamond','Noto Serif Malayalam',serif; font-size:1.2rem; color:var(--gold-dark); text-decoration:none; border-bottom:1px solid var(--gold);">100 Old Mason Farm Rd, Chapel Hill, NC 27517</a>
+      <div style="font-style: italic; color: var(--muted); font-size: 0.9rem; margin-top: 10px;">പരിപാടിയുടെ തീയതി അടുക്കുമ്പോൾ സൂം ലിങ്ക് ഇവിടെ ചേർക്കുന്നതാണ്</div>
     </div>
   </div>
 
   <div class="rsvp-card">
     <div class="rsvp-title">RSVP</div>
-    <p class="rsvp-subtitle">Please let us know if you'll be able to join us.</p>
+    <p class="rsvp-subtitle">നിങ്ങൾക്ക് ഞങ്ങളോടൊപ്പം ചേരാൻ കഴിയുമോ എന്ന് ദയവായി അറിയിക്കുക.</p>
 
     <form id="rsvp-form">
       <div class="rsvp-field">
-        <label>Name <span class="required">*</span></label>
+        <label>പേര് <span class="required">*</span></label>
         <input type="text" id="rsvp_name" required>
       </div>
 
       <div class="rsvp-field">
-        <label>Email Address <span class="required">*</span></label>
+        <label>ഇമെയിൽ വിലാസം <span class="required">*</span></label>
         <input type="email" id="rsvp_email" required>
       </div>
 
       <div class="rsvp-field">
-        <label>Phone Number</label>
+        <label>ഫോൺ നമ്പർ</label>
         <input type="tel" id="rsvp_phone">
       </div>
 
       <div class="rsvp-field">
-        <label>Will you be attending? <span class="required">*</span></label>
+        <label>നിങ്ങൾ പങ്കെടുക്കുമോ? <span class="required">*</span></label>
         <div class="rsvp-radio-group" id="attendance-group">
-          <label class="rsvp-radio-option"><input type="radio" name="attendance" value="Will Attend In Person" required> Will Attend In Person</label>
-          <label class="rsvp-radio-option"><input type="radio" name="attendance" value="Will Attend Virtually"> Will Attend Virtually</label>
-          <label class="rsvp-radio-option"><input type="radio" name="attendance" value="Will Not Attend"> Will Not Attend</label>
+          <label class="rsvp-radio-option"><input type="radio" name="attendance" value="Will Attend In Person" required> നേരിട്ട് പങ്കെടുക്കും</label>
+          <label class="rsvp-radio-option"><input type="radio" name="attendance" value="Will Attend Virtually"> വെർച്വലായി (ഓൺലൈനിൽ) പങ്കെടുക്കും</label>
+          <label class="rsvp-radio-option"><input type="radio" name="attendance" value="Will Not Attend"> പങ്കെടുക്കില്ല</label>
         </div>
       </div>
 
       <div class="rsvp-field" id="party-field" style="display:none;">
-        <label>Number in Party (Including Yourself) <span class="required">*</span></label>
+        <label>എത്ര പേർ വരും (നിങ്ങൾ ഉൾപ്പെടെ) <span class="required">*</span></label>
         <input type="number" id="rsvp_party" min="1" value="1" required>
       </div>
 
       <div class="rsvp-field-row" id="dates-field" style="display:none;">
         <div class="rsvp-field">
-          <label>Tentative Arrival Date</label>
+          <label>വരവിന്റെ ഏകദേശ തീയതി</label>
           <input type="date" id="rsvp_arrival">
         </div>
         <div class="rsvp-field">
-          <label>Tentative Departure Date</label>
+          <label>മടക്കയാത്രയുടെ ഏകദേശ തീയതി</label>
           <input type="date" id="rsvp_departure">
         </div>
       </div>
 
-      <button type="submit" class="rsvp-submit-btn" id="rsvp-submit-btn">Send RSVP →</button>
+      <button type="submit" class="rsvp-submit-btn" id="rsvp-submit-btn">അയയ്ക്കുക →</button>
     </form>
 
-    <div class="rsvp-status success" id="rsvp-success">✓ Thank you! Your RSVP has been received.</div>
-    <div class="rsvp-status error" id="rsvp-error">Something went wrong — please try again, or email us directly.</div>
+    <div class="rsvp-status success" id="rsvp-success">✓ നന്ദി! നിങ്ങളുടെ മറുപടി ലഭിച്ചു.</div>
+    <div class="rsvp-status error" id="rsvp-error">എന്തോ പിശക് സംഭവിച്ചു — വീണ്ടും ശ്രമിക്കുക, അല്ലെങ്കിൽ ഞങ്ങൾക്ക് നേരിട്ട് ഇമെയിൽ അയയ്ക്കുക.</div>
   </div>
 </div>
 
 <footer>
   <span class="ornament">✦</span>
-  Jacob Mathai &nbsp;·&nbsp; 1937 – 2026
+  ജേക്കബ് മത്തായി &nbsp;·&nbsp; 1937 – 2026
   <span class="ornament">✦</span>
 </footer>
 
@@ -607,7 +604,7 @@ let imgEls = [];
 // loading, so visitors aren't waiting on 26 photos just to see the page.
 images.forEach((src, i) => {
   const img = document.createElement("img");
-  img.alt = "Jacob Mathai";
+  img.alt = "ജേക്കബ് മത്തായി";
   if (i === 0) {
     img.classList.add("active");
     img.src = src;
@@ -663,14 +660,14 @@ function pause() {
   clearInterval(timer);
   playing = false;
   document.getElementById('btn-play').innerHTML = '&#9654;';
-  document.getElementById('btn-play').title = 'Play';
+  document.getElementById('btn-play').title = 'പ്ലേ';
 }
 
 function play() {
   timer = setInterval(advance, 4000);
   playing = true;
   document.getElementById('btn-play').innerHTML = '&#9646;&#9646;';
-  document.getElementById('btn-play').title = 'Pause';
+  document.getElementById('btn-play').title = 'പോസ്';
 }
 
 document.getElementById('btn-prev').addEventListener('click', () => {
@@ -717,7 +714,7 @@ document.getElementById('rsvp-form').addEventListener('submit', async e => {
   e.preventDefault();
   const btn = document.getElementById('rsvp-submit-btn');
   btn.disabled = true;
-  btn.textContent = 'Sending…';
+  btn.textContent = 'അയക്കുന്നു…';
 
   const attendance = document.querySelector('input[name="attendance"]:checked');
   const params = {
@@ -738,7 +735,7 @@ document.getElementById('rsvp-form').addEventListener('submit', async e => {
     console.error('EmailJS error:', err);
     document.getElementById('rsvp-error').style.display = 'block';
     btn.disabled = false;
-    btn.textContent = 'Send RSVP →';
+    btn.textContent = 'അയയ്ക്കുക →';
   }
 });
 </script>
