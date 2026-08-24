@@ -289,6 +289,101 @@
     font-size: clamp(1.4rem, 3.5vw, 1.75rem);
   }
 
+  /* ── Program ── */
+  .program-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    padding: 36px 44px;
+    margin-top: 28px;
+  }
+  .program-title {
+    font-family: 'Cormorant Garamond', 'Noto Serif Malayalam', serif;
+    font-size: clamp(1.6rem, 4vw, 2.15rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .program-timeline { border-top: 1px solid var(--border); }
+  .program-item {
+    display: flex;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .program-time {
+    flex: 0 0 150px;
+    font-family: 'Cormorant Garamond', 'Noto Serif Malayalam', serif;
+    font-size: 1rem;
+    color: var(--gold-dark);
+    font-weight: 500;
+  }
+  .program-desc {
+    flex: 1;
+    font-family: 'Jost', 'Noto Sans Malayalam', sans-serif;
+    font-size: 0.92rem;
+    color: var(--ink);
+    line-height: 1.7;
+  }
+  .program-desc em {
+    display: block;
+    color: var(--muted);
+    font-style: italic;
+    font-size: 0.85rem;
+    margin-top: 2px;
+  }
+  .program-speakers { list-style: none; margin-top: 8px; padding-left: 0; }
+  .program-speakers li {
+    padding: 3px 0;
+    font-family: 'Cormorant Garamond', 'Noto Serif Malayalam', serif;
+    font-size: 1.05rem;
+  }
+  .program-speakers .tentative {
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-style: italic;
+    font-family: 'Jost', 'Noto Sans Malayalam', sans-serif;
+  }
+  .program-note {
+    margin-top: 24px;
+    font-family: 'Cormorant Garamond', 'Noto Serif Malayalam', serif;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--ink);
+    text-align: center;
+  }
+  .program-dress {
+    margin-top: 24px;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .program-dress .label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .program-dress .value {
+    font-family: 'Cormorant Garamond', 'Noto Serif Malayalam', serif;
+    font-size: 1.3rem;
+    color: var(--gold-dark);
+  }
+  .program-dress-note {
+    margin-top: 10px;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.9rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   /* ── RSVP ── */
   .rsvp-card {
     background: var(--white);
@@ -404,6 +499,9 @@
     .celebration-detail .value { font-size: 1.1rem; }
     .celebration-detail .value.highlight { font-size: 1.2rem; }
     .divider { padding: 0 16px; }
+    .program-card { padding: 24px 20px; }
+    .program-item { flex-direction: column; gap: 4px; }
+    .program-time { flex: none; }
     .rsvp-card { padding: 24px 20px; }
     .rsvp-field-row { flex-direction: column; gap: 0; }
     .rsvp-field-row .rsvp-field { margin-bottom: 20px; }
@@ -494,6 +592,59 @@
       <span class="value">The North Carolina Botanical Garden</span><br>
       <a href="https://maps.app.goo.gl/4qcfFm8b8C31uS4VA" target="_blank" style="font-family:'Cormorant Garamond','Noto Serif Malayalam',serif; font-size:1.2rem; color:var(--gold-dark); text-decoration:none; border-bottom:1px solid var(--gold);">100 Old Mason Farm Rd, Chapel Hill, NC 27517</a>
       <div style="font-style: italic; color: var(--muted); font-size: 0.9rem; margin-top: 10px;">പരിപാടിയുടെ തീയതി അടുക്കുമ്പോൾ സൂം ലിങ്ക് ഇവിടെ ചേർക്കുന്നതാണ്</div>
+    </div>
+  </div>
+
+  <div class="program-card">
+    <div class="program-title">പരിപാടിക്രമം</div>
+
+    <div class="program-timeline">
+      <div class="program-item">
+        <span class="program-time">ഉച്ചയ്ക്ക് 1:00</span>
+        <span class="program-desc">സൂം മീറ്റിംഗ് ആരംഭിക്കുന്നു</span>
+      </div>
+      <div class="program-item">
+        <span class="program-time">1:05 – 1:15</span>
+        <span class="program-desc">ഉദ്ഘാടനം — ആദിത്യ മത്തായി</span>
+      </div>
+      <div class="program-item">
+        <span class="program-time">1:15 – 2:30</span>
+        <span class="program-desc">
+          ജേക്കബിനെ അനുസ്മരിക്കുന്നു
+          <em>ക്രമം അന്തിമമല്ല — ഓരോരുത്തർക്കും ഏകദേശം 10 മിനിറ്റ്</em>
+          <ul class="program-speakers">
+            <li>സിദ്ധാർത്ഥ മത്തായി</li>
+            <li>ഹാൻസ് വെയിൻറിച്ച് <span class="tentative">(സ്ഥിരീകരിച്ചിട്ടില്ല)</span></li>
+            <li>രതിൻ ബസു</li>
+            <li>ദിലീപ് മാത്യു <span class="tentative">(സ്ഥിരീകരിച്ചിട്ടില്ല)</span></li>
+            <li>റോബർട്ട് മത്തായി</li>
+            <li>ജോൺ മത്തായി</li>
+            <li>ആൻ മത്തായി</li>
+          </ul>
+        </span>
+      </div>
+      <div class="program-item">
+        <span class="program-time">2:30 – 2:40</span>
+        <span class="program-desc">സമാപനം — ആദിത്യ മത്തായി</span>
+      </div>
+      <div class="program-item">
+        <span class="program-time">ഉച്ചയ്ക്ക് 2:45</span>
+        <span class="program-desc">സൂം മീറ്റിംഗ് അവസാനിക്കുന്നു</span>
+      </div>
+      <div class="program-item">
+        <span class="program-time">2:45 – 4:00</span>
+        <span class="program-desc">ലഘു ഭക്ഷണവും ചായയും <em>നേരിട്ട് പങ്കെടുക്കുന്നവർക്ക്</em></span>
+      </div>
+    </div>
+
+    <div class="program-note">
+      <p>ജേക്കബിന്റെ ജീവിതം ആഘോഷിക്കാൻ സമയം കണ്ടെത്തിയതിനും യാത്ര ചെയ്തതിനും നന്ദി. അദ്ദേഹത്തെക്കുറിച്ചുള്ള ഓർമ്മകൾ പങ്കുവെക്കാനും അദ്ദേഹം ചെയ്ത എല്ലാ കാര്യങ്ങളും ഓർമ്മിക്കാൻ ഒരു നിമിഷം കണ്ടെത്താനും ഞങ്ങൾ കാത്തിരിക്കുന്നു.</p>
+    </div>
+
+    <div class="program-dress">
+      <span class="label">വേഷവിധാനം</span>
+      <span class="value">എലവേറ്റഡ് കാഷ്വൽ</span>
+      <p class="program-dress-note">ജേക്കബ് നിറങ്ങളുള്ള വസ്ത്രങ്ങൾ ധരിക്കാൻ ഇഷ്ടപ്പെട്ടിരുന്നു — കറുപ്പ് വസ്ത്രം ധരിക്കണമെന്ന് കരുതേണ്ട, നിങ്ങൾക്ക് അനുവദിക്കാവുന്നത്ര നിറങ്ങൾ ധരിക്കാൻ ഞങ്ങൾ പ്രോത്സാഹിപ്പിക്കുന്നു!</p>
     </div>
   </div>
 

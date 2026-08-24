@@ -292,6 +292,102 @@
     font-size: clamp(1.55rem, 3.5vw, 1.95rem);
   }
 
+  /* ── Program ── */
+  .program-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    padding: 36px 44px;
+    margin-top: 28px;
+  }
+  .program-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.85rem, 4vw, 2.45rem);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .program-timeline { border-top: 1px solid var(--border); }
+  .program-item {
+    display: flex;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .program-time {
+    flex: 0 0 130px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: var(--gold-dark);
+    font-weight: 500;
+  }
+  .program-desc {
+    flex: 1;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.95rem;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  .program-desc em {
+    display: block;
+    color: var(--muted);
+    font-style: italic;
+    font-size: 0.85rem;
+    margin-top: 2px;
+  }
+  .program-speakers { list-style: none; margin-top: 8px; padding-left: 0; }
+  .program-speakers li {
+    padding: 3px 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+  }
+  .program-speakers .tentative {
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-style: italic;
+    font-family: 'Jost', sans-serif;
+  }
+  .program-note {
+    margin-top: 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--ink);
+    text-align: center;
+  }
+  .program-dress {
+    margin-top: 24px;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .program-dress .label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .program-dress .value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--gold-dark);
+  }
+  .program-dress-note {
+    margin-top: 10px;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.9rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   /* ── RSVP ── */
   .rsvp-card {
     background: var(--white);
@@ -407,6 +503,9 @@
     .celebration-detail .value { font-size: 1.2rem; }
     .celebration-detail .value.highlight { font-size: 1.3rem; }
     .divider { padding: 0 16px; }
+    .program-card { padding: 24px 20px; }
+    .program-item { flex-direction: column; gap: 4px; }
+    .program-time { flex: none; }
     .rsvp-card { padding: 24px 20px; }
     .rsvp-field-row { flex-direction: column; gap: 0; }
     .rsvp-field-row .rsvp-field { margin-bottom: 20px; }
@@ -497,6 +596,59 @@
       <span class="value">The North Carolina Botanical Garden</span><br>
       <a href="https://maps.app.goo.gl/4qcfFm8b8C31uS4VA" target="_blank" style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--gold-dark); text-decoration:none; border-bottom:1px solid var(--gold);">100 Old Mason Farm Rd, Chapel Hill, NC 27517</a>
       <div style="font-style: italic; color: var(--muted); font-size: 0.9rem; margin-top: 10px;">Le lien Zoom sera ajouté ici à l'approche de la date de l'événement</div>
+    </div>
+  </div>
+
+  <div class="program-card">
+    <div class="program-title">Programme</div>
+
+    <div class="program-timeline">
+      <div class="program-item">
+        <span class="program-time">13h00</span>
+        <span class="program-desc">Ouverture de la réunion Zoom</span>
+      </div>
+      <div class="program-item">
+        <span class="program-time">13h05 – 13h15</span>
+        <span class="program-desc">Ouverture — Adithya Mathai</span>
+      </div>
+      <div class="program-item">
+        <span class="program-time">13h15 – 14h30</span>
+        <span class="program-desc">
+          En souvenir de Jacob
+          <em>Ordre provisoire — environ 10 minutes chacun</em>
+          <ul class="program-speakers">
+            <li>Sidhartha Mathai</li>
+            <li>Hans Weinrich <span class="tentative">(à confirmer)</span></li>
+            <li>Rathin Basu</li>
+            <li>Dilip Matthew <span class="tentative">(à confirmer)</span></li>
+            <li>Robert Mathai</li>
+            <li>John Mathai</li>
+            <li>Anne Mathai</li>
+          </ul>
+        </span>
+      </div>
+      <div class="program-item">
+        <span class="program-time">14h30 – 14h40</span>
+        <span class="program-desc">Clôture — Adithya Mathai</span>
+      </div>
+      <div class="program-item">
+        <span class="program-time">14h45</span>
+        <span class="program-desc">Fermeture de la réunion Zoom</span>
+      </div>
+      <div class="program-item">
+        <span class="program-time">14h45 – 16h00</span>
+        <span class="program-desc">Collation légère et thé <em>Pour les personnes présentes sur place</em></span>
+      </div>
+    </div>
+
+    <div class="program-note">
+      <p>Merci de prendre le temps, et de faire le voyage, pour célébrer la vie de Jacob. Nous nous réjouissons de partager des souvenirs de lui et de prendre ce moment pour nous rappeler de lui et de tout ce qu'il a accompli.</p>
+    </div>
+
+    <div class="program-dress">
+      <span class="label">Code vestimentaire</span>
+      <span class="value">Décontracté chic</span>
+      <p class="program-dress-note">Jacob aimait porter des vêtements très colorés — ne vous sentez pas obligé(e) de porter du noir. Nous vous encourageons à porter autant de couleurs que vous vous le permettrez !</p>
     </div>
   </div>
 
