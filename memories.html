@@ -654,6 +654,15 @@ function resizeImageFile(file, maxDim, quality) {
   });
 }
 
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(reader.error);
+    reader.onload = () => resolve(reader.result); // "data:<mime>;base64,...."
+    reader.readAsDataURL(file);
+  });
+}
+
 let selectedPhotoDataUrl = '';
 
 function clearPhotoSelection() {
@@ -690,9 +699,23 @@ form.addEventListener('submit', async e => {
   const website = document.getElementById('memory_website').value;
 
   const payload = { name, comment, website };
-  if (selectedPhotoDataUrl) {
+  const photoFile = document.getElementById('memory_photo').files[0];
+  if (selectedPhotoDataUrl && photoFile) {
     payload.photoMimeType = 'image/jpeg';
     payload.photoData = selectedPhotoDataUrl.slice(selectedPhotoDataUrl.indexOf(',') + 1);
+
+    // Also send the untouched original so the full-quality file can be kept
+    // in Drive — only the resized copy above gets embedded in the book.
+    const MAX_ORIGINAL_BYTES = 15 * 1024 * 1024;
+    if (photoFile.size <= MAX_ORIGINAL_BYTES) {
+      try {
+        const originalDataUrl = await fileToBase64(photoFile);
+        payload.originalPhotoMimeType = photoFile.type || 'application/octet-stream';
+        payload.originalPhotoData = originalDataUrl.slice(originalDataUrl.indexOf(',') + 1);
+      } catch (err) {
+        console.error('Failed to read original photo, continuing without it:', err);
+      }
+    }
   }
 
   try {
