@@ -145,6 +145,35 @@
 
   .memory-honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
+  .memory-field input[type="file"] {
+    padding: 8px;
+    font-size: 13px;
+    background: var(--cream);
+  }
+  .memory-photo-preview {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .memory-photo-preview img {
+    width: 64px; height: 64px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+  .memory-photo-remove {
+    padding: 6px 12px;
+    background: none;
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 12px;
+    font-family: 'Jost', sans-serif;
+  }
+  .memory-photo-remove:hover { border-color: var(--gold); color: var(--gold-dark); }
+
   .memory-form-actions { display: flex; gap: 12px; margin-top: 4px; }
   .memory-cancel-btn {
     flex: 0 0 auto;
@@ -222,7 +251,7 @@
     align-items: center;
     gap: 20px;
   }
-  #book-outer { margin: 0 auto; width: 100%; max-width: 700px; }
+  #book-outer { margin: 0 auto; width: 100%; max-width: 1360px; }
 
   .page {
     background: var(--white);
@@ -242,6 +271,15 @@
     color: var(--gold);
     line-height: 1;
     margin-bottom: 4px;
+  }
+  .page-photo {
+    width: 100%;
+    max-height: 38%;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+    flex-shrink: 0;
   }
   .page-comment {
     flex: 1;
@@ -360,6 +398,14 @@
         <label>Your Memory <span class="required">*</span></label>
         <textarea id="memory_comment" maxlength="2000" required></textarea>
       </div>
+      <div class="memory-field">
+        <label>Add a Photo (optional)</label>
+        <input type="file" id="memory_photo" accept="image/*">
+        <div class="memory-photo-preview" id="memory-photo-preview" style="display:none;">
+          <img id="memory-photo-preview-img" alt="">
+          <button type="button" id="memory-photo-remove" class="memory-photo-remove">Remove</button>
+        </div>
+      </div>
       <div class="memory-honeypot" aria-hidden="true">
         <label for="memory_website">Website</label>
         <input type="text" id="memory_website" tabindex="-1" autocomplete="off">
@@ -474,6 +520,14 @@ function buildBook() {
     const content = document.createElement('div');
     content.className = 'page-content';
 
+    if (entry.photo) {
+      const photo = document.createElement('img');
+      photo.className = 'page-photo';
+      photo.src = entry.photo;
+      photo.alt = '';
+      content.appendChild(photo);
+    }
+
     const quote = document.createElement('div');
     quote.className = 'page-quote-mark';
     quote.textContent = '“';
@@ -507,13 +561,13 @@ function buildBook() {
   });
 
   pageFlip = new St.PageFlip(bookEl, {
-    width: 380,
-    height: 520,
+    width: 460,
+    height: 640,
     size: 'stretch',
-    minWidth: 280,
-    maxWidth: 550,
-    minHeight: 380,
-    maxHeight: 750,
+    minWidth: 320,
+    maxWidth: 650,
+    minHeight: 460,
+    maxHeight: 900,
     showCover: false,
     usePortrait: true,
     drawShadow: true,
@@ -565,7 +619,63 @@ document.getElementById('memory-cancel-btn').addEventListener('click', () => {
   form.classList.remove('expanded');
   toggleBtn.style.display = 'block';
   form.reset();
+  clearPhotoSelection();
 });
+
+// Resize/compress a selected image file client-side before upload, so a
+// multi-MB phone photo doesn't turn into a slow, oversized submission.
+function resizeImageFile(file, maxDim, quality) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(reader.error);
+    reader.onload = () => {
+      const img = new Image();
+      img.onerror = reject;
+      img.onload = () => {
+        let { width, height } = img;
+        if (width > maxDim || height > maxDim) {
+          if (width >= height) {
+            height = Math.round(height * (maxDim / width));
+            width = maxDim;
+          } else {
+            width = Math.round(width * (maxDim / height));
+            height = maxDim;
+          }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+let selectedPhotoDataUrl = '';
+
+function clearPhotoSelection() {
+  selectedPhotoDataUrl = '';
+  document.getElementById('memory_photo').value = '';
+  document.getElementById('memory-photo-preview').style.display = 'none';
+}
+
+document.getElementById('memory_photo').addEventListener('change', async e => {
+  const file = e.target.files[0];
+  if (!file) { clearPhotoSelection(); return; }
+  try {
+    selectedPhotoDataUrl = await resizeImageFile(file, 1600, 0.82);
+    document.getElementById('memory-photo-preview-img').src = selectedPhotoDataUrl;
+    document.getElementById('memory-photo-preview').style.display = 'flex';
+  } catch (err) {
+    console.error('Failed to process photo:', err);
+    clearPhotoSelection();
+  }
+});
+
+document.getElementById('memory-photo-remove').addEventListener('click', clearPhotoSelection);
 
 form.addEventListener('submit', async e => {
   e.preventDefault();
@@ -579,15 +689,24 @@ form.addEventListener('submit', async e => {
   const comment = document.getElementById('memory_comment').value.trim();
   const website = document.getElementById('memory_website').value;
 
+  const payload = { name, comment, website };
+  if (selectedPhotoDataUrl) {
+    payload.photoMimeType = 'image/jpeg';
+    payload.photoData = selectedPhotoDataUrl.slice(selectedPhotoDataUrl.indexOf(',') + 1);
+  }
+
   try {
     await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({ name, comment, website }),
+      body: JSON.stringify(payload),
     });
-    allMemories.push({ timestamp: new Date().toISOString(), name, comment });
+    const newEntry = { timestamp: new Date().toISOString(), name, comment };
+    if (selectedPhotoDataUrl) newEntry.photo = selectedPhotoDataUrl;
+    allMemories.push(newEntry);
     buildBook();
     form.reset();
+    clearPhotoSelection();
     form.classList.remove('expanded');
     toggleBtn.style.display = 'block';
     document.getElementById('memory-success').style.display = 'block';
