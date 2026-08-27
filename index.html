@@ -489,6 +489,47 @@
   .rsvp-status.success { background: #edf7ed; border: 1.5px solid #a8d5a8; color: #2d6a2d; }
   .rsvp-status.error { background: #fdf0ed; border: 1.5px solid #d5a8a8; color: #6a2d2d; }
 
+  /* ── Share a Memory ── */
+  .share-memory-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    padding: 32px 36px;
+    margin-top: 28px;
+    text-align: center;
+  }
+  .share-memory-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2rem);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .share-memory-text {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto 22px;
+  }
+  .share-memory-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background: var(--gold-dark);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Jost', sans-serif;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .share-memory-btn:hover { background: var(--gold); }
+
   /* ── Footer ── */
   footer {
     text-align: center;
@@ -520,6 +561,7 @@
     .rsvp-card { padding: 24px 20px; }
     .rsvp-field-row { flex-direction: column; gap: 0; }
     .rsvp-field-row .rsvp-field { margin-bottom: 20px; }
+    .share-memory-card { padding: 24px 20px; }
   }
 </style>
 </head>
@@ -720,6 +762,12 @@
 
     <div class="rsvp-status success" id="rsvp-success">✓ Thank you! Your RSVP has been received.</div>
     <div class="rsvp-status error" id="rsvp-error">Something went wrong — please try again, or email us directly.</div>
+  </div>
+
+  <div class="share-memory-card">
+    <div class="share-memory-title">Share a Memory</div>
+    <p class="share-memory-text">Have a favorite story, photo memory, or thought about Jacob you'd like to share? Add it to a memory book that everyone visiting this page can read.</p>
+    <a href="memories.html" class="share-memory-btn">Open the Memory Book →</a>
   </div>
 </div>
 

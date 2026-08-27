@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jacob Mathai — Memories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f7f3ec;
+    --parchment: #ede6d6;
+    --gold: #c8a96e;
+    --gold-dark: #9a7a42;
+    --ink: #2a1f14;
+    --muted: #7a6a55;
+    --border: #d8cbb8;
+    --white: #fdfaf5;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background-color: var(--cream);
+    background-image:
+      radial-gradient(ellipse at 20% 0%, rgba(200,169,110,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(200,169,110,0.10) 0%, transparent 60%);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  .back-link {
+    display: block;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--gold-dark);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    width: fit-content;
+    margin: 0 auto 8px;
+  }
+  .back-link:hover { border-bottom-color: var(--gold); }
+
+  /* ── Page header ── */
+  .page-header {
+    text-align: center;
+    padding: 32px 24px 24px;
+  }
+  .in-loving-memory {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.35rem;
+    letter-spacing: 0.18em;
+    color: var(--gold-dark);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .full-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+  }
+
+  .section {
+    max-width: 1100px;
+    margin: 0 auto 52px;
+    padding: 0 24px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  /* ── Composer ── */
+  .memory-composer {
+    max-width: 560px;
+    margin: 0 auto 32px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    padding: 20px 24px;
+  }
+  .memory-toggle-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: var(--gold-dark);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Jost', sans-serif;
+    letter-spacing: 0.04em;
+    transition: background 0.2s;
+  }
+  .memory-toggle-btn:hover { background: var(--gold); }
+
+  .memory-form {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+  }
+  .memory-form.expanded { max-height: 700px; margin-top: 18px; }
+
+  .memory-field { margin-bottom: 16px; }
+  .memory-field label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--muted);
+    margin-bottom: 7px;
+  }
+  .memory-field .required { color: var(--gold-dark); }
+  .memory-field input, .memory-field textarea {
+    width: 100%;
+    padding: 10px 13px;
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    transition: border-color 0.2s;
+  }
+  .memory-field textarea {
+    resize: vertical;
+    min-height: 110px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  .memory-field input:focus, .memory-field textarea:focus { outline: none; border-color: var(--gold); }
+
+  .memory-honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  .memory-form-actions { display: flex; gap: 12px; margin-top: 4px; }
+  .memory-cancel-btn {
+    flex: 0 0 auto;
+    padding: 12px 18px;
+    background: none;
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Jost', sans-serif;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .memory-cancel-btn:hover { border-color: var(--gold); color: var(--gold-dark); }
+  .memory-submit-btn {
+    flex: 1;
+    padding: 12px;
+    background: var(--gold-dark);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Jost', sans-serif;
+    letter-spacing: 0.04em;
+    transition: background 0.2s;
+  }
+  .memory-submit-btn:hover { background: var(--gold); }
+  .memory-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .memory-status {
+    display: none;
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 4px;
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: center;
+  }
+  .memory-status.success { background: #edf7ed; border: 1.5px solid #a8d5a8; color: #2d6a2d; }
+  .memory-status.error { background: #fdf0ed; border: 1.5px solid #d5a8a8; color: #6a2d2d; }
+
+  /* ── Sort toggle ── */
+  .sort-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+  .sort-btn {
+    padding: 8px 18px;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 13px;
+    font-family: 'Jost', sans-serif;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .sort-btn.active { background: var(--gold-dark); border-color: var(--gold-dark); color: #fff; }
+  .sort-btn:hover:not(.active) { border-color: var(--gold); color: var(--gold-dark); }
+
+  /* ── Book ── */
+  .book-loading, .book-empty {
+    text-align: center;
+    font-style: italic;
+    color: var(--muted);
+    padding: 60px 20px;
+  }
+  #book-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  #book-outer { margin: 0 auto; width: 100%; max-width: 700px; }
+
+  .page {
+    background: var(--white);
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .page-content {
+    height: 100%;
+    padding: 40px 32px 48px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+  .page-quote-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .page-comment {
+    flex: 1;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--ink);
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .page-signature {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    text-align: right;
+  }
+  .page-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gold-dark);
+  }
+  .page-date {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .page-number {
+    position: absolute;
+    bottom: 12px; left: 0; right: 0;
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+  .page-title-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px;
+  }
+  .page-title-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    letter-spacing: 0.14em;
+    color: var(--gold-dark);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .page-title-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .page-title-sub {
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .book-nav { display: flex; gap: 16px; }
+  .slide-btn {
+    width: 38px; height: 38px;
+    border: 1.5px solid var(--border);
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--gold-dark);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .slide-btn:hover { background: var(--parchment); border-color: var(--gold); }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 32px 24px 48px;
+    font-size: 1.05rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  footer .ornament { color: var(--gold); margin: 0 8px; }
+
+  @media (max-width: 768px) {
+    .memory-composer { padding: 16px 18px; }
+    .page-content { padding: 28px 22px 40px; }
+    .page-comment { font-size: 1.05rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <a href="index.html" class="back-link">← Back to Jacob's page</a>
+  <div class="in-loving-memory">In Loving Memory</div>
+  <div class="full-name">Jacob Mathai</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Memories</div>
+
+  <div class="memory-composer">
+    <button class="memory-toggle-btn" id="memory-toggle-btn">+ Share a Memory</button>
+    <form id="memory-form" class="memory-form">
+      <div class="memory-field">
+        <label>Your Name <span class="required">*</span></label>
+        <input type="text" id="memory_name" maxlength="100" required>
+      </div>
+      <div class="memory-field">
+        <label>Your Memory <span class="required">*</span></label>
+        <textarea id="memory_comment" maxlength="2000" required></textarea>
+      </div>
+      <div class="memory-honeypot" aria-hidden="true">
+        <label for="memory_website">Website</label>
+        <input type="text" id="memory_website" tabindex="-1" autocomplete="off">
+      </div>
+      <div class="memory-form-actions">
+        <button type="button" class="memory-cancel-btn" id="memory-cancel-btn">Cancel</button>
+        <button type="submit" class="memory-submit-btn" id="memory-submit-btn">Add to the Book</button>
+      </div>
+    </form>
+    <div class="memory-status success" id="memory-success">✓ Thank you — your memory has been added.</div>
+    <div class="memory-status error" id="memory-error">Something went wrong — please try again in a moment.</div>
+  </div>
+
+  <div class="sort-toggle">
+    <button class="sort-btn active" data-sort="date" id="sort-date-btn">By Date</button>
+    <button class="sort-btn" data-sort="name" id="sort-name-btn">By Name</button>
+  </div>
+
+  <div id="book-loading" class="book-loading">Loading memories…</div>
+  <div id="book-empty" class="book-empty" style="display:none;">No memories yet — be the first to share one.</div>
+
+  <div id="book-wrap" style="display:none;">
+    <div id="book-outer"></div>
+    <div class="book-nav">
+      <button class="slide-btn" id="book-prev" title="Previous">&#8592;</button>
+      <button class="slide-btn" id="book-next" title="Next">&#8594;</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span class="ornament">✦</span>
+  Jacob Mathai &nbsp;·&nbsp; 1937 – 2026
+  <span class="ornament">✦</span>
+</footer>
+
+<script src="https://unpkg.com/page-flip/dist/js/page-flip.browser.js"></script>
+<script>
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzUjw0Y528VKb76tGOPZMbYPplVmU_ATKmZddS6EKKDiHDHTTzMW-WnGttv0dtb26Qs/exec";
+
+let allMemories = [];
+let currentSort = 'date';
+let pageFlip = null;
+
+function formatDate(iso) {
+  try {
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return '';
+    return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+  } catch (e) {
+    return '';
+  }
+}
+
+function sortedMemories() {
+  const arr = allMemories.slice();
+  if (currentSort === 'name') {
+    arr.sort((a, b) => a.name.localeCompare(b.name));
+  } else {
+    arr.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+  }
+  return arr;
+}
+
+function buildBook() {
+  if (pageFlip) {
+    try { pageFlip.destroy(); } catch (e) { /* ignore */ }
+    pageFlip = null;
+  }
+
+  // St.PageFlip restructures whatever element it's given, so we can't
+  // reuse the same node across rebuilds — mount a fresh div each time
+  // inside a stable outer container.
+  const outer = document.getElementById('book-outer');
+  outer.innerHTML = '';
+  const bookEl = document.createElement('div');
+  outer.appendChild(bookEl);
+
+  const entries = sortedMemories();
+
+  if (entries.length === 0) {
+    document.getElementById('book-wrap').style.display = 'none';
+    document.getElementById('book-empty').style.display = 'block';
+    return;
+  }
+  document.getElementById('book-empty').style.display = 'none';
+  document.getElementById('book-wrap').style.display = 'flex';
+
+  const titlePage = document.createElement('div');
+  titlePage.className = 'page';
+  const titleContent = document.createElement('div');
+  titleContent.className = 'page-title-content';
+  const eyebrow = document.createElement('div');
+  eyebrow.className = 'page-title-eyebrow';
+  eyebrow.textContent = 'In Loving Memory';
+  const titleName = document.createElement('div');
+  titleName.className = 'page-title-name';
+  titleName.textContent = 'Jacob Mathai';
+  const sub = document.createElement('div');
+  sub.className = 'page-title-sub';
+  sub.textContent = 'Memories shared by family & friends';
+  titleContent.appendChild(eyebrow);
+  titleContent.appendChild(titleName);
+  titleContent.appendChild(sub);
+  titlePage.appendChild(titleContent);
+  bookEl.appendChild(titlePage);
+
+  entries.forEach((entry, i) => {
+    const page = document.createElement('div');
+    page.className = 'page';
+
+    const content = document.createElement('div');
+    content.className = 'page-content';
+
+    const quote = document.createElement('div');
+    quote.className = 'page-quote-mark';
+    quote.textContent = '“';
+
+    const comment = document.createElement('div');
+    comment.className = 'page-comment';
+    comment.textContent = entry.comment;
+
+    const sig = document.createElement('div');
+    sig.className = 'page-signature';
+    const name = document.createElement('div');
+    name.className = 'page-name';
+    name.textContent = '— ' + entry.name;
+    const date = document.createElement('div');
+    date.className = 'page-date';
+    date.textContent = formatDate(entry.timestamp);
+    sig.appendChild(name);
+    sig.appendChild(date);
+
+    content.appendChild(quote);
+    content.appendChild(comment);
+    content.appendChild(sig);
+    page.appendChild(content);
+
+    const num = document.createElement('div');
+    num.className = 'page-number';
+    num.textContent = (i + 1) + ' / ' + entries.length;
+    page.appendChild(num);
+
+    bookEl.appendChild(page);
+  });
+
+  pageFlip = new St.PageFlip(bookEl, {
+    width: 380,
+    height: 520,
+    size: 'stretch',
+    minWidth: 280,
+    maxWidth: 550,
+    minHeight: 380,
+    maxHeight: 750,
+    showCover: false,
+    usePortrait: true,
+    drawShadow: true,
+    flippingTime: 700,
+    mobileScrollSupport: false,
+  });
+  pageFlip.loadFromHTML(bookEl.querySelectorAll('.page'));
+}
+
+async function loadMemories() {
+  document.getElementById('book-loading').style.display = 'block';
+  document.getElementById('book-empty').style.display = 'none';
+  document.getElementById('book-wrap').style.display = 'none';
+  try {
+    const res = await fetch(APPS_SCRIPT_URL);
+    const data = await res.json();
+    allMemories = Array.isArray(data) ? data : [];
+  } catch (err) {
+    console.error('Failed to load memories:', err);
+    allMemories = [];
+  }
+  document.getElementById('book-loading').style.display = 'none';
+  buildBook();
+}
+
+document.getElementById('sort-date-btn').addEventListener('click', () => {
+  currentSort = 'date';
+  document.getElementById('sort-date-btn').classList.add('active');
+  document.getElementById('sort-name-btn').classList.remove('active');
+  buildBook();
+});
+document.getElementById('sort-name-btn').addEventListener('click', () => {
+  currentSort = 'name';
+  document.getElementById('sort-name-btn').classList.add('active');
+  document.getElementById('sort-date-btn').classList.remove('active');
+  buildBook();
+});
+
+document.getElementById('book-prev').addEventListener('click', () => { if (pageFlip) pageFlip.flipPrev(); });
+document.getElementById('book-next').addEventListener('click', () => { if (pageFlip) pageFlip.flipNext(); });
+
+const toggleBtn = document.getElementById('memory-toggle-btn');
+const form = document.getElementById('memory-form');
+toggleBtn.addEventListener('click', () => {
+  form.classList.add('expanded');
+  toggleBtn.style.display = 'none';
+});
+document.getElementById('memory-cancel-btn').addEventListener('click', () => {
+  form.classList.remove('expanded');
+  toggleBtn.style.display = 'block';
+  form.reset();
+});
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const submitBtn = document.getElementById('memory-submit-btn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Adding…';
+  document.getElementById('memory-success').style.display = 'none';
+  document.getElementById('memory-error').style.display = 'none';
+
+  const name = document.getElementById('memory_name').value.trim();
+  const comment = document.getElementById('memory_comment').value.trim();
+  const website = document.getElementById('memory_website').value;
+
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ name, comment, website }),
+    });
+    allMemories.push({ timestamp: new Date().toISOString(), name, comment });
+    buildBook();
+    form.reset();
+    form.classList.remove('expanded');
+    toggleBtn.style.display = 'block';
+    document.getElementById('memory-success').style.display = 'block';
+    setTimeout(() => { document.getElementById('memory-success').style.display = 'none'; }, 5000);
+  } catch (err) {
+    console.error('Failed to submit memory:', err);
+    document.getElementById('memory-error').style.display = 'block';
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Add to the Book';
+  }
+});
+
+loadMemories();
+</script>
+</body>
+</html>
